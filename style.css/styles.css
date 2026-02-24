@@ -27,4 +27,85 @@ h1 {
   border-radius: 8px;
   text-align: center;
 }
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.tabs {
+  margin: 15px 0;
+}
+
+.tab {
+  padding: 8px 15px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+.tab.active {
+  background: #007bff;
+  color: white;
+}
+
+.jobs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.job-card {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: red;
+}
+
+.job-card button {
+  margin-top: 8px;
+  margin-right: 5px;
+  padding: 6px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.interview-btn {
+  background: green;
+  color: white;
+}
+
+.rejected-btn {
+  background: red;
+  color: white;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 40px;
+}
+
+.empty-state img {
+  width: 80px;
+  opacity: 0.6;
+}
+
+/* Responsive  */
+@media (max-width: 600px) {
+  .dashboard {
+    flex-direction: column;
+  }
+}
