@@ -106,4 +106,5 @@ document.querySelectorAll(".tab").forEach(tab => {
   });
 });
  
-
+renderJobs();
+updateDashboard();
