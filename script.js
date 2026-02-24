@@ -1,13 +1,85 @@
 const jobs = [
-  { id: 1, company: "Google", position: "Frontend Developer", location: "Remote", type: "Full Time", salary: "$90,000" description:"Build modern UI using React.", status: "all"},
-  { id: 2, company: "Microsoft", position: "Backend Developer", location: "USA", type: "Full Time", salary: "$100,000" description:"Develop scalable APIs.", status: "all"},
-  { id: 3, company: "Amazon", position: "Cloud Engineer", location: "Canada", type: "Remote", salary: "$110,000" description:"Manage AWS services.", status: "all"},
-  { id: 4, company: "Meta", position: "UI Designer", location: "UK", type: "Full Time", salary: "$80,000" description:"Design user-friendly interfaces.", status: "all"},
-  { id: 5, company: "Netflix", position: "Data Analyst", location: "Remote", type: "Contract", salary: "$70,000" description:"Analyze streaming platform data.", status: "all"},
-  { id: 6, company: "Tesla", position: "Software Engineer", location: "USA", type: "Full Time", salary: "$120,000" description:"Develop automotive software.", status: "all"},
-  { id: 7, company: "Spotify", position: "Mobile Developer", location: "Sweden", type: "Full Time", salary: "$85,000" description:"Build modern UI using React.", status: "all"},
-  { id: 8, company: "Adobe", position: "roduct Manager", location: "Germany", type: "Full Time", salary: "$95,000" description:"Lead product development.", status: "all"}
-]
+  {
+    id: 1,
+    company: "Google",
+    position: "Frontend Developer",
+    location: "Remote",
+    type: "Full Time",
+    salary: "$90,000",
+    description: "Build modern UI using React.",
+    status: "all",
+  },
+  {
+    id: 2,
+    company: "Microsoft",
+    position: "Backend Developer",
+    location: "USA",
+    type: "Full Time",
+    salary: "$100,000",
+    description: "Develop scalable APIs.",
+    status: "all",
+  },
+  {
+    id: 3,
+    company: "Amazon",
+    position: "Cloud Engineer",
+    location: "Canada",
+    type: "Remote",
+    salary: "$110,000",
+    description: "Manage AWS services.",
+    status: "all",
+  },
+  {
+    id: 4,
+    company: "Meta",
+    position: "UI Designer",
+    location: "UK",
+    type: "Full Time",
+    salary: "$80,000",
+    description: "Design user-friendly interfaces.",
+    status: "all",
+  },
+  {
+    id: 5,
+    company: "Netflix",
+    position: "Data Analyst",
+    location: "Remote",
+    type: "Contract",
+    salary: "$70,000",
+    description: "Analyze streaming platform data.",
+    status: "all",
+  },
+  {
+    id: 6,
+    company: "Tesla",
+    position: "Software Engineer",
+    location: "USA",
+    type: "Full Time",
+    salary: "$120,000",
+    description: "Develop automotive software.",
+    status: "all",
+  },
+  {
+    id: 7,
+    company: "Spotify",
+    position: "Mobile Developer",
+    location: "Sweden",
+    type: "Full Time",
+    salary: "$85,000",
+    description: "Build mobile streaming apps.",
+    status: "all",
+  },
+  {
+    id: 8,
+    company: "Adobe",
+    position: "Product Manager",
+    location: "Germany",
+    type: "Full Time",
+    salary: "$95,000",
+    description: "Lead product development.",
+    status: "all",
+  },
+];
 
 let currentTab = "all";
 
@@ -17,22 +89,19 @@ const rejectedCount = document.getElementById("rejectedCount");
 const totalCount = document.getElementById("totalCount");
 const tabCount = document.getElementById("tabCount");
 
-
 function renderJobs() {
   container.innerHTML = "";
 
-  let filtered = jobs.filter(job => {
-    if (currentTab === "all")
-      return true;
-    return job.status === currentTab:
-
+  let filtered = jobs.filter((job) => {
+    if (currentTab === "all") return true;
+    return job.status === currentTab;
   });
 
   tabCount.innerText = filtered.length + " jobs";
 
   if (filtered.length === 0) {
     container.innerHTML = `
-     <div class="empty-state">
+      <div class="empty-state">
         <img src="https://cdn-icons-png.flaticon.com/512/4076/4076506.png">
         <h3>No jobs available</h3>
         <p>Please check again later</p>
@@ -41,8 +110,7 @@ function renderJobs() {
     return;
   }
 
-   filtered.forEach(job => {
-
+  filtered.forEach((job) => {
     const card = document.createElement("div");
     card.className = "job-card";
 
@@ -64,7 +132,7 @@ function renderJobs() {
 }
 
 function setStatus(id, status) {
-  const job = jobs.find(j => j.id === id);
+  const job = jobs.find((j) => j.id === id);
 
   if (job.status === status) {
     job.status = "all";
@@ -77,8 +145,7 @@ function setStatus(id, status) {
 }
 
 function deleteJob(id) {
-
-  const index = jobs.findIndex(j => j.id === id);
+  const index = jobs.findIndex((j) => j.id === id);
   jobs.splice(index, 1);
 
   updateDashboard();
@@ -86,25 +153,25 @@ function deleteJob(id) {
 }
 
 function updateDashboard() {
-
-  const interview = jobs.filter(j => j.status === "interview").length;
-  const rejected = jobs.filter(j => j.status === "rejected").length;
+  const interview = jobs.filter((j) => j.status === "interview").length;
+  const rejected = jobs.filter((j) => j.status === "rejected").length;
 
   interviewCount.innerText = interview;
   rejectedCount.innerText = rejected;
   totalCount.innerText = jobs.length;
 }
 
-document.querySelectorAll(".tab").forEach(tab => {
+document.querySelectorAll(".tab").forEach((tab) => {
   tab.addEventListener("click", function () {
-
-    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    document
+      .querySelectorAll(".tab")
+      .forEach((t) => t.classList.remove("active"));
     this.classList.add("active");
 
     currentTab = this.dataset.tab;
     renderJobs();
   });
 });
- 
+
 renderJobs();
 updateDashboard();
